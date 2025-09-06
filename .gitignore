@@ -1,3 +1,7 @@
+build/
+.cache/
+log.txt
+
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
