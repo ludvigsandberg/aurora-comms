@@ -21,47 +21,29 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      # 3. Set up Docker cache
-      - name: Cache Docker layers
-        uses: actions/cache@v3
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-docker-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-docker-
-
-      # 4. Build Release image
+      # 3. Build Release image
       - name: Build Release Docker image
         run: |
           docker build \
             --build-arg BUILD_TYPE=Release \
             --target release \
-            --cache-from=type=local,src=/tmp/.buildx-cache \
-            --cache-to=type=local,dest=/tmp/.buildx-cache-new \
             -t chat-app:release .
-          rm -rf /tmp/.buildx-cache && mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      # 5. Build Debug image
+      # 4. Build Debug image
       - name: Build Debug Docker image
         run: |
           docker build \
             --build-arg BUILD_TYPE=Debug \
             --target debug \
-            --cache-from=type=local,src=/tmp/.buildx-cache \
-            --cache-to=type=local,dest=/tmp/.buildx-cache-new \
             -t chat-app:debug .
-          rm -rf /tmp/.buildx-cache && mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      # 6. Build Test image
+      # 5. Build Test image
       - name: Build Test Docker image
         run: |
           docker build \
             --target test \
-            --cache-from=type=local,src=/tmp/.buildx-cache \
-            --cache-to=type=local,dest=/tmp/.buildx-cache-new \
             -t chat-app:test .
-          rm -rf /tmp/.buildx-cache && mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      # 7. Run Ceedling tests
+      # 6. Run Ceedling tests
       - name: Run unit tests
         run: docker run --rm chat-app:test
