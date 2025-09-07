@@ -4,9 +4,9 @@
 
 **AuroraComms** is a high-performance, lightweight multi-client communications server written in C99. It demonstrates advanced low-level C programming, type-safe and type-generic data structures, CMake-based build systems, and modern containerization with CI/CD workflows. All core data structures—dynamic arrays, hash maps, and more—are implemented from scratch using robust techniques to work around C99 limitations, ensuring type safety and maintainability.
 
-<img src="asset/ss1.png" align="top" width="33%" />
-<img src="asset/ss2.png" align="top" width="33%" />
-<img src="asset/ss3.png" align="top" width="33%" />
+<img src="asset/ss1.png" width="30%"/>
+<img src="asset/ss2.png" width="30%"/>
+<img src="asset/ss3.png" width="30%"/>
 
 ## Features
 - **Online Multi-client TCP chatroom** — Connect via Netcat (nc) or Telnet.
