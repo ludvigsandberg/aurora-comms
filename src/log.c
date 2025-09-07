@@ -1,4 +1,4 @@
-#include <ca/log.h>
+#include <ac/log.h>
 
 #include <stdarg.h>
 #include <stddef.h>
@@ -7,7 +7,7 @@
 #include <time.h>
 #include <string.h>
 
-void ca_log(const char *level, const char *msg) {
+void ac_log(const char *level, const char *msg) {
     static FILE *log = NULL;
 
     if (!log) {
@@ -36,7 +36,7 @@ void ca_log(const char *level, const char *msg) {
     fwrite(buf, len, 1, stdout);
 }
 
-void ca_log_fmt(const char *level, const char *fmt, ...) {
+void ac_log_fmt(const char *level, const char *fmt, ...) {
     char buf[924];
 
     va_list args;
@@ -44,5 +44,5 @@ void ca_log_fmt(const char *level, const char *fmt, ...) {
     vsnprintf(buf, sizeof buf, fmt, args);
     va_end(args);
 
-    ca_log(level, buf);
+    ac_log(level, buf);
 }
