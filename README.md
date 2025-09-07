@@ -1,9 +1,9 @@
-# ChatApp
+# AuroraComms
 
-**ChatApp** is a high-performance, lightweight multi-client chat server written in C99. It demonstrates advanced low-level C programming, type-safe and type-generic data structures, CMake-based build systems, and modern containerization with CI/CD workflows. All core data structures—dynamic arrays, hash maps, and more—are implemented from scratch using robust techniques to work around C99 limitations, ensuring type safety and maintainability.
+**AuroraComms** is a high-performance, lightweight multi-client communications server written in C99. It demonstrates advanced low-level C programming, type-safe and type-generic data structures, CMake-based build systems, and modern containerization with CI/CD workflows. All core data structures—dynamic arrays, hash maps, and more—are implemented from scratch using robust techniques to work around C99 limitations, ensuring type safety and maintainability.
 
 ## Features
-- **Multi-client TCP chatroom** — Connect via Netcat (nc) or Telnet.
+- **Online Multi-client TCP chatroom** — Connect via Netcat (nc) or Telnet.
 - **Dockerized** — Build, deploy, and run anywhere with minimal setup.
 - **CI/CD Ready** — Automated builds and tests ensure reliable development.
 - **Custom type-safe**, type-generic data structures — Elegant C99 implementations of dynamic arrays, hash maps, and more without external libraries.
@@ -12,7 +12,7 @@
 - **Clean, modular architecture** — Networking and application logic are fully separated, enabling maintainability, scalability, and straightforward extension of functionality.
 
 ## Architecture
-**ChatApp** is organized into the following layers:
+**AuroraComms** is organized into the following layers:
 1. **Networking Layer** — Handles TCP connections, client sessions, and message broadcasting.
 2. **Data Structures Layer** — Provides type-safe dynamic arrays and hash maps, fully generic across types.
 3. **Application Logic** — Manages chatroom behavior, client state, and message routing.
@@ -24,15 +24,15 @@ Clear separation of concerns ensures that networking, application logic, and dat
 ### 1. 🛠️ Build the server:
 #### Release
 ```sh
-docker build --target release -t chat-app:release .
+docker build --target release -t aurora-comms:release .
 ```
 #### Debug
 ```sh
-docker build --build-arg BUILD_TYPE=Debug --target debug -t chat-app:debug .
+docker build --build-arg BUILD_TYPE=Debug --target debug -t aurora-comms:debug .
 ```
 #### Tests
 ```sh
-docker build --target test -t chat-app:test .
+docker build --target test -t aurora-comms:test .
 ```
 
 ---
@@ -40,15 +40,15 @@ docker build --target test -t chat-app:test .
 ### 2. 🚀 Run the server:
 #### Release
 ```sh
-docker run --rm -it -p 2000:2000 chat-app:release
+docker run --rm -it -p 2000:2000 aurora-comms:release
 ```
 #### Debug
 ```sh
-docker run --rm -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -p 2000:2000 chat-app:debug
+docker run --rm -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -p 2000:2000 aurora-comms:debug
 ```
 #### Tests
 ```sh
-docker run --rm chat-app:test
+docker run --rm aurora-comms:test
 ```
 
 ---

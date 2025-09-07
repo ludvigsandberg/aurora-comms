@@ -103,16 +103,14 @@
 # This is where Ceedling should look for your source and test files.
 # see documentation for the many options for specifying this.
 :paths:
-  :test:
-    - +:test/**
-    - -:test/support
   :source:
     - src/**
   :include:
-    - inc/** # In simple projects, this entry often duplicates :source
+    - inc/**
+  :test:
+    - test/**
   :support:
     - test/support
-  :libraries: []
 
 # You can even specify specific files to add or remove from your test
 # and release collections. Usually it's better to use paths and let
