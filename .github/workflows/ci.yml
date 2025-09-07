@@ -1,4 +1,4 @@
-name: ChatApp CI
+name: AuroraComms CI
 
 on:
   push:

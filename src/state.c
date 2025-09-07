@@ -190,28 +190,8 @@ void ac_state_update(ac_user_t *user, ac_app_t *app, ac_bytes_t *in) {
                 ac_string_t yes_cmd;
                 ac_arr_from_string_literal(yes_cmd, "y", 1, 0);
                 if (ac_string_eq_ignore_case(line, yes_cmd)) {
-                    /* Broadcast user exit to all clients. */
-
-                    ac_client_handle_t *handle;
-                    ac_user_t **other_user;
-
-                    ac_map_foreach(app->users.from_handle, handle,
-                                   other_user) {
-                        if (user->handle == *handle) {
-                            continue;
-                        }
-
-                        if ((*other_user)->state == AC_STATE_CHAT) {
-                            ac_print_fmt(*other_user, app, AC_PRINT_INTERRUPT,
-                                         "%.*s has left the chat.",
-                                         ac_alen(user->username),
-                                         user->username);
-                        }
-                    }
-
                     /* Remove user from app. */
                     ac_server_remove_client(&app->server, user->handle);
-
                     goto cleanup_exit;
                 }
                 /* If no, return to chat state. */
